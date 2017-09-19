@@ -1,23 +1,25 @@
 const express = require("express");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const app = express();
+var mongoose = require("mongoose");
 const keys = require("./config/keys");
-const PORT = process.env.PORT || 5000;
-passport.use(new GoogleStrategy({
-    clientID:keys.googleClientID,
-    clientSecret:keys.googleClientSecret,
-    callbackURL:"/auth/google/callback"
-},(accessToken)=> {
-    console.log(accessToken);
+const cookieSession = require("cookie-session");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+var Users = require("./models/User");
+mongoose.connect(keys.mongoURI);
+require("./services/passport")
+
+const app = express();
+
+app.use(cookieSession({
+    maxAge:30*24*60*60*1000,//maximum keep time
+    keys:[keys.cookieKey] //cookie config key
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get("/auth/google",passport.authenticate('google',{
-    scope:['profile','email']
-})
-//access the route ,will get to the auth authentication
-//what aspect we want to have,just access profile&&email,users'acccout
-);
 
-app.get("/auth/google/callback",passport.authenticate("google"));
+const authRoutes = require("./routes/authRoutes");
+authRoutes(app);
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT);
