@@ -1,9 +1,9 @@
 
-if(process.env.Node_ENV==="production")
+if(process.env.NODE_ENV==="production")
 {
-   module.export=require("./prod.js");
+   module.exports=require("./prod.js");
 }
 else
 {
-    module.export=require("./dev.js");
+    module.exports=require("./dev.js");
 }
