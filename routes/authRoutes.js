@@ -13,13 +13,14 @@ app.get('/auth/google/callback',
     }
   },
   (req, res) => { // On success, redirect back to '/'
-    res.redirect('/');
+    res.redirect('/surveys');
   }
 );
 
 app.get("/api/logout",(req,res)=>{
     req.logout();
-
+    //res.send(req.user);
+    res.redirect("/");
 });
 
 app.get("/api/current_user",(req,res)=>{
