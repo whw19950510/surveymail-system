@@ -8,3 +8,11 @@ export const fetchUser = ()=>{
     };
     
 };
+
+export const handleToken=(token)=>{
+    return function(dispatch){
+        axios
+        .post("/api/stripe",token)
+        .then(res=>dispatch({type:FETCH_USER,payload:res.data}));
+    };
+}
