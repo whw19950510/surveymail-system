@@ -23,7 +23,7 @@
     "passport-google-oauth20": "^1.0.0",
     "react-stripe-checkout": "^2.6.3",
     "redux-thunk": "^2.2.0",
-    "stripe": "^5.1.0"
+    "stripe": "^5.1.1"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

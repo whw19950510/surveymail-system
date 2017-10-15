@@ -10,8 +10,9 @@ class Header extends Component {
             case false:return <li><a href="/auth/google">Log in With Google</a></li>;
             default:return [
                 <li key="1"><Payments /></li>,
+                <li key="3" style={{margin:"0 10px"}}>Credits:{this.props.auth.credits}</li>,
                 <li key="2"><a href="api/logout">Log out</a></li>
-            ]
+            ];
             
         }
     }
@@ -27,7 +28,6 @@ class Header extends Component {
                     Emaily-survey 
                     </Link>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        
                         <li><a href="/auth/google">Log In</a></li>
                         <li><a href="/surveys">DashBoard</a></li>
                         <li><a href="/surveys/new">SurveyNew</a></li>
