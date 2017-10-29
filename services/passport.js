@@ -30,8 +30,7 @@ passport.use(new GoogleStrategy({
             done(null,existinguser);
         } else {
             new User({googleId:profile.id}).save()
-            .then(user=>done(null,user));
-            
+            .then(user=>done(null,user));         
         }
     });
     
